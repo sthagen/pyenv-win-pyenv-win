@@ -103,10 +103,11 @@ Get pyenv-win via one of the following methods:
    - cmd.exe: `pip install pyenv-win --target %USERPROFILE%\.pyenv`
 - **With zip file**
    1. Download link: [pyenv-win](https://github.com/pyenv-win/pyenv-win/archive/master.zip)
-   2. Extract to 
-    - Powershell or Git Bash: `$HOME/.pyenv/pyenv-win`
-    - cmd.exe: `%USERPROFILE%\.pyenv\pyenv-win`
-   3. Ensure you see `bin` folder under `pyenv-win`
+   2. Create a `.pyenv` directory if not exist under `$HOME` or `%USERPROFILE%`
+   3. Extract and move files to
+    - Powershell or Git Bash: `$HOME/.pyenv/`
+    - cmd.exe: `%USERPROFILE%\.pyenv\`
+   4. Ensure you see `bin` folder under `%USERPROFILE%\.pyenv\pyenv-win`
 - **With Git**
    - Powershell or Git Bash: `git clone https://github.com/pyenv-win/pyenv-win.git $HOME/.pyenv`
    - cmd.exe: `git clone https://github.com/pyenv-win/pyenv-win.git %USERPROFILE%\.pyenv`
@@ -134,6 +135,7 @@ Get pyenv-win via one of the following methods:
    3. Close and reopen your terminal app and run `pyenv --version`
       1. If the return value is the installed version of `pyenv`, then contonue to Step 4
       2. If you receive a command not found error, ensure the environment variables are properly set via the GUI: __This PC → Properties → Advanced system settings → Advanced → Environment Variables... → PATH__
+      3. If you receive a command not found error and you are using Visual Studio Code or another IDE with a built in terminal, restart it and try again
 
    4. Now run the `pyenv rehash` from home directory
       - If you are getting an error, go through the steps again. Still facing the issue? [Open a ticket](https://github.com/pyenv-win/pyenv-win/issues).
@@ -155,10 +157,11 @@ Get pyenv-win via one of the following methods:
 
 - **With zip file**
    1. Download link: [pyenv-win](https://github.com/pyenv-win/pyenv-win/archive/32bit-train.zip)
-   2. Extract to 
-    - Powershell or Git Bash: `$HOME/.pyenv/pyenv-win`
-    - cmd.exe: `%USERPROFILE%\.pyenv\pyenv-win`
-   3. Ensure you see `bin` folder under `pyenv-win`
+   2. Create a `.pyenv` directory if not exist under `$HOME` or `%USERPROFILE%`
+   3. Extract and move files to
+    - Powershell or Git Bash: `$HOME/.pyenv/`
+    - cmd.exe: `%USERPROFILE%\.pyenv\`
+   4. Ensure you see `bin` folder under `%USERPROFILE%\.pyenv\pyenv-win`
 
 Now follow [finish the installation](#finish-the-installation) which are above
 
