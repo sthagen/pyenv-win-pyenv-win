@@ -120,11 +120,13 @@ Get pyenv-win via one of the following methods:
 
    If you installed using Chocolatey, you can skip to step 3.
 
-   1. Add PYENV to your Environment Variables
+   1. Add PYENV and PYENV_HOME to your Environment Variables
          1. Using either PowerShell or Windows Terminal run
          ```
          [System.Environment]::SetEnvironmentVariable('PYENV',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+         [System.Environment]::SetEnvironmentVariable('PYENV_HOME',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
          ```
+         Note: PYENV_HOME is to support pipenv
 
    2. Now add the following paths to your USER PATH variable in order to access the pyenv command. Run the following in PowerShell or Windows Terminal:
       
@@ -167,7 +169,7 @@ Now follow [finish the installation](#finish-the-installation) which are above
 
 ## Usage
 
-- Update the list of discoverable Python versions: `pyenv update`
+- Update the list of discoverable Python versions using: `pyenv update` command for pyenv-win `2.64.x` and `2.32.x` versions
 - To view a list of python versions supported by pyenv windows: `pyenv install -l`
 - To install a python version:  `pyenv install 3.5.2`
    - _Note: An install wizard may pop up for some non-silent installs. You'll need to click through the wizard during installation. There's no need to change any options in it. or you can use -q for quite installation_
