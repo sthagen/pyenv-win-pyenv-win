@@ -10,8 +10,9 @@ def test_version_name_help():
             ["help", "version-name"],
             ["version-name", "--help"],
         ]:
-            stdout = "\r\n".join(ctx.pyenv(args).splitlines()[:2]).strip()
-            assert stdout == "Usage: pyenv version-name"
+            stdout, stderr = ctx.pyenv(args)
+            stdout = "\r\n".join(stdout.splitlines()[:2]).strip()
+            assert (stdout, stderr) == ("Usage: pyenv version-name", "")
     run_pyenv_test({}, commands)
 
 
@@ -22,31 +23,37 @@ def test_vname_help():
             ["help", "vname"],
             ["vname", "--help"],
         ]:
-            stdout = "\r\n".join(ctx.pyenv(args).splitlines()[:2]).strip()
-            assert stdout == "Usage: pyenv vname"
+            stdout, stderr = ctx.pyenv(args)
+            stdout = "\r\n".join(stdout.splitlines()[:2]).strip()
+            assert (stdout, stderr) == ("Usage: pyenv vname", "")
     run_pyenv_test({}, commands)
 
 
 @pytest.mark.parametrize("command", ['version-name', 'vname'])
 def test_no_version(command):
     def commands(ctx):
-        assert ctx.pyenv(command) == ("No global python version has been set yet. "
-                                      "Please set the global version by typing:\r\n"
-                                      "pyenv global 3.7.2")
+        assert ctx.pyenv(command) == (
+            (
+                "No global python version has been set yet. "
+                "Please set the global version by typing:\r\n"
+                "pyenv global 3.7.2"
+            ),
+            ""
+        )
     run_pyenv_test({}, commands)
 
 
 @pytest.mark.parametrize("command", ['version-name', 'vname'])
 def test_global_version(command):
     def commands(ctx):
-        assert ctx.pyenv(command) == "3.7.2"
+        assert ctx.pyenv(command) == ("3.7.2", "")
     run_pyenv_test({'global_ver': "3.7.2"}, commands)
 
 
 @pytest.mark.parametrize("command", ['version-name', 'vname'])
 def test_one_local_version(command):
     def commands(ctx):
-        assert ctx.pyenv(command) == "3.9.1"
+        assert ctx.pyenv(command) == ("3.9.1", "")
     settings = {
         'global_ver': "3.7.2",
         'local_ver': "3.9.1"
@@ -57,7 +64,7 @@ def test_one_local_version(command):
 @pytest.mark.parametrize("command", ['version-name', 'vname'])
 def test_shell_version(command):
     def commands(ctx):
-        assert ctx.pyenv(command) == "3.9.2"
+        assert ctx.pyenv(command) == ("3.9.2", "")
     settings = {
         'global_ver': "3.7.5",
         'local_ver': "3.8.6",
@@ -69,7 +76,7 @@ def test_shell_version(command):
 @pytest.mark.parametrize("command", ['version-name', 'vname'])
 def test_many_local_versions(command):
     def commands(ctx):
-        assert ctx.pyenv(command) == "3.8.8\r\n3.9.1"
+        assert ctx.pyenv(command) == ("3.8.8\r\n3.9.1", "")
     settings = {
         'global_ver': "3.7.2",
         'local_ver': "3.8.8\n3.9.1\n"
