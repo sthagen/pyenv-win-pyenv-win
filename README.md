@@ -94,6 +94,8 @@ At line:1 char:173
  + FullyQualifiedErrorId : UnauthorizedAccess
 ```
 
+For more information on 'digitally signed' or 'Security warning' you can refer to following issue [#332](https://github.com/pyenv-win/pyenv-win/issues/332)
+
 Installation is complete!
 
 ***
@@ -142,7 +144,11 @@ For existing python users
 
 If you are using PowerShell or Git Bash use `$HOME` instead of `%USERPROFILE%`
 
-installation command via command prompt `pip install pyenv-win --target %USERPROFILE%\.pyenv`
+installation command via command prompt  
+`pip install pyenv-win --target %USERPROFILE%\\.pyenv`  
+
+if you having an error on above command use the folllowing to resolve it. ref. link [#303](https://github.com/pyenv-win/pyenv-win/issues/303)  
+`pip install pyenv-win --target %USERPROFILE%\\.pyenv --no-user --upgrade`
 
 steps to [add System Settings](#add-system-settings)
 
